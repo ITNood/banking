@@ -29,10 +29,10 @@
               v-for="(item, index) in items"
               :key="index"
             >
-              <img :src="item.img" />
+              <router-link to="" class="content_img"><img :src="item.img" /></router-link>
               <div class="content_left">
                 <ul>
-                  <li v-for="(list, index) in item.list" :key="index">
+                  <li v-for="(list, index) in item.list" :key="index" class="relative">
                     <router-link to="">{{ list.text }}</router-link>
                   </li>
                 </ul>
