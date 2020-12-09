@@ -1,8 +1,5 @@
 import axios from 'axios'
-import {
-    Loading,
-    Message
-} from 'element-ui'
+import Message from 'element-ui'
 import json_response_codes from './codes'
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -17,6 +14,7 @@ const Axios = axios.create({
     headers: {
         "Content-Type": 'application/json'
     },
+
 })
 //拦截所有api请求，重新获取token
 Axios.interceptors.request.use(
@@ -34,29 +32,30 @@ Axios.interceptors.request.use(
     }
 )
 
-var loadinginstace;
 
+//loading数据加载中
+// var loadinginstace;
 // 拦截所有的 api 请求，未来可做权限检查，缓存，代理等
-Axios.interceptors.request.use(
-    config => {
-        // element ui Loading方法
-        loadinginstace = Loading.service({
-            fullscreen: true,
-            text: 'Loading...'
-        })
-        return config;
-    },
-    error => {
-        loadinginstace.close()
-        return Promise.reject(error);
-    },
+// Axios.interceptors.request.use(
+//     config => {
+//         // element ui Loading方法
+//         loadinginstace = Loading.service({
+//             fullscreen: true,
+//             text: 'Loading...'
+//         })
+//         return config;
+//     },
+//     error => {
+//         loadinginstace.close()
+//         return Promise.reject(error);
+//     },
 
-);
+// );
 
 // 拦截所有的 api 响应，可以实现自动弹窗报错
 Axios.interceptors.response.use(
     response => { // when HTTP_STATUS in [ 200 , 299 ]
-        loadinginstace.close()
+        // loadinginstace.close()
         //判断登录状态，跳转路由
         if (response.data.status === 500) { //退出登录
             alert(response.data.msg)
@@ -78,7 +77,7 @@ Axios.interceptors.response.use(
     },
     error => { // when HTTP_STATUS in [ 300 , 599 ]
 
-        loadinginstace.close()
+        //loadinginstace.close()
 
         if (error === 'cancelled locally') {
             return Promise.reject(error);

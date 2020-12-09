@@ -1,27 +1,19 @@
 <template>
   <div style="background: #fafafa !important">
-    <el-header class="header">
-      <div class="container relative">
-        <img src="../../static/images/name.png" class="name" />
-        <img src="../../static/images/map.png" class="map absolute" />
-        <img src="../../static/images/logo.png" class="logo absolute" />
-      </div>
-    </el-header>
-    <!--导航条-->
     <Navbar />
     <div class="container clear content">
       <!--左侧-->
       <div class="home_left left">
         <!--banner start-->
         <div id="banner">
-          <Swiper1 :banner="list"/>
+          <Swiper1 :banner="list" />
         </div>
 
         <!--项目介绍 start-->
         <div class="project">
           <div class="title relative">
             <h1>项目介绍</h1>
-            <router-link to="">更多+</router-link>
+            <router-link :to="{ path: '/', query: { id: this.id } }">更多+</router-link>
           </div>
           <div class="content">
             <div
@@ -33,7 +25,9 @@
               <div class="content_left">
                 <ul>
                   <li v-for="(list, index) in item.list" :key="index" class="relative">
-                    <router-link to="">{{ list.text }}</router-link>
+                    <router-link :to="{ path: '/', query: { id: list.id } }">{{
+                      list.text
+                    }}</router-link>
                   </li>
                 </ul>
               </div>
@@ -47,11 +41,13 @@
         <div class="news">
           <div class="title relative">
             <h1>资讯动态</h1>
-            <router-link to="">更多+</router-link>
+            <router-link :to="{ path: '/', query: { id: this.newsid } }"
+              >更多+</router-link
+            >
           </div>
           <ul class="news_list">
             <li v-for="(todo, index) in todos" :key="index">
-              <router-link to="">
+              <router-link :to="{ path: '/', query: { id: todo.id } }">
                 <h1 class="font-hide relative">
                   {{ todo.title }}<span>{{ todo.date }}</span>
                 </h1>
@@ -68,13 +64,17 @@
           <div class="unit">
             <div class="title relative">
               <h1>理事单位</h1>
-              <router-link to="">更多+</router-link>
+              <router-link :to="{ path: '/', query: { id: this.unitid } }"
+                >更多+</router-link
+              >
             </div>
             <ul class="unit_list">
               <li v-for="(unit, index) in units" :key="index">
-                <router-link to="" class="font-hide">{{
-                  unit.text
-                }}</router-link>
+                <router-link
+                  :to="{ path: '/', query: { id: unit.id } }"
+                  class="font-hide"
+                  >{{ unit.text }}</router-link
+                >
               </li>
             </ul>
           </div>
@@ -103,13 +103,17 @@
 </template>
 
 <script>
+import api from "../API/index";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Swiper1 from "../components/swiper"; // eslint-disable-line no-unused-vars
 export default {
-  components: { Navbar,Swiper1, Footer },
+  components: { Navbar, Swiper1, Footer },
   data() {
     return {
+      id: "",
+      newsid: "",
+      unitid: "",
       list: [
         {
           img: require("../../static/images/banner.jpg"),
@@ -214,13 +218,22 @@ export default {
     };
   },
   created() {
+    this.getdata();
   },
-  mounted() {
-   
+  mounted() {},
+  methods: {
+    getdata() {
+      api
+        .choices("index")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          // this.$message.warning(err.msg)
+          console.log(err);
+        });
+    },
   },
-  methods: {},
 };
 </script>
-<style scoped lang="less">
-
-</style>
+<style scoped lang="less"></style>

@@ -41,7 +41,6 @@ export default {
         disableOnInteraction:false,
       },
       loop: true,
-      
     });
   },
   created() {},

@@ -4,10 +4,10 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://www.baidu.com',
+                target: 'http://www.greenfinancial.org/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': '/'
+                    '^/api': ''
                 }
             },
         },

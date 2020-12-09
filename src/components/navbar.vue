@@ -1,5 +1,12 @@
 <template>
   <div>
+    <el-header class="header">
+      <div class="container relative">
+        <img src="../../static/images/name.png" class="name" />
+        <img src="../../static/images/map.png" class="map absolute" />
+        <img src="../../static/images/logo.png" class="logo absolute" />
+      </div>
+    </el-header>
     <div class="navbar">
       <div class="container">
         <div class="relative nav">
@@ -16,7 +23,7 @@
           </ul>
           <!--搜索-->
           <div class="search absolute">
-            <el-input suffix-icon="el-icon-search" size="mini" v-model="search"> </el-input>
+            <el-input suffix-icon="el-icon-search" size="mini" v-model="search"></el-input>
           </div>
         </div>
       </div>
