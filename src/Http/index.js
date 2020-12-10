@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Message from 'element-ui'
-import json_response_codes from './codes'
+// import json_response_codes from './codes'
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
@@ -36,8 +36,7 @@ Axios.interceptors.request.use(
 //loading数据加载中
 // var loadinginstace;
 // 拦截所有的 api 请求，未来可做权限检查，缓存，代理等
-// Axios.interceptors.request.use(
-//     config => {
+// Axios.interceptors.request.use(config => {
 //         // element ui Loading方法
 //         loadinginstace = Loading.service({
 //             fullscreen: true,
@@ -49,40 +48,37 @@ Axios.interceptors.request.use(
 //         loadinginstace.close()
 //         return Promise.reject(error);
 //     },
-
 // );
 
 // 拦截所有的 api 响应，可以实现自动弹窗报错
 Axios.interceptors.response.use(
     response => { // when HTTP_STATUS in [ 200 , 299 ]
+        console.log(response)
         // loadinginstace.close()
         //判断登录状态，跳转路由
-        if (response.data.status === 500) { //退出登录
-            alert(response.data.msg)
+        if (response.status == 500) { //退出登录
+            // alert(response.data.msg)
             localStorage.removeItem('token')
             // window.location.href = '#/login'
-            this.Router.push('#/login')
-        } else if (response.data.status == 400) { //返回错误
-            alert(response.data.msg)
+             this.Router.push('#/login')
+        } else if (response.status == 400) { //返回错误
+            // alert(response.data.msg)
             return Promise.resolve(response.data)
-        } else if (response.data.status === json_response_codes.status) { //返回数据
+        } else if (response.status ==200) { //返回数据
             return Promise.resolve(response.data);
         }
         // Message({
         //     //请求超时时间
         //     message: response.data.msg || '服务器接口异常', type: 'error', duration: 3 * 1000
         // });
-
         //return Promise.reject(response.data.msg);
     },
-    error => { // when HTTP_STATUS in [ 300 , 599 ]
-
+    error => { 
+        // when HTTP_STATUS in [ 300 , 599 ]
         //loadinginstace.close()
-
         if (error === 'cancelled locally') {
             return Promise.reject(error);
         }
-
         if (error.message === 'timeout of 5000ms exceeded') {
             Message({
                 message: '接口请求超时!',

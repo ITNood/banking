@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Navbar/>
+      <Navbar :search="value"/>
       <div class="container"></div>
       <Footer/>
   </div>
@@ -12,7 +12,9 @@ import Footer from '../components/footer'
 export default {
   components: {Footer,Navbar},
   data() {
-    return {};
+    return {
+      value:''
+    };
   },
   created() {},
   methods: {},

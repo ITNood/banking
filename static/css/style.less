@@ -6,9 +6,10 @@
 @more: #898989;
 @bg: #fafafa;
 @font: #5f5f5f;
+
 ::-webkit-scrollbar {
     width: 5px;
-    height: 110px;
+    max-height: 5px;
     background-color: #F5F5F5;
 }
 
@@ -39,6 +40,10 @@
     font-size: 14px;
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: rgb(250, 250, 250) !important;
 }
 
 h1,
@@ -106,6 +111,19 @@ a {
     float: right;
 }
 
+.font-hide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+.morefont {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    // -webkit-line-clamp: 2;
+}
 #footer {
     background-color: @footer;
     margin-top: 50px;
@@ -187,7 +205,7 @@ a {
                 }
 
                 .router-link-exact-active {
-                    color: @white;
+                    color: @white  !important;
                 }
             }
         }
@@ -227,6 +245,10 @@ a {
         right: 15px;
         line-height: 30px;
         top: 10px;
+
+        &:hover {
+            color: @nav;
+        }
     }
 }
 
@@ -238,7 +260,7 @@ a {
 
 .home_left {
     width: 720px;
-    margin-right:35px;
+    margin-right: 35px;
 
     .project {
         margin-top: 35px;
@@ -265,6 +287,7 @@ a {
 
                     img {
                         transition: all .5s ease-in-out;
+                        width: 100%;
                     }
 
                     &:hover {
@@ -287,39 +310,43 @@ a {
                     margin-bottom: 10px;
                     padding-bottom: 10px;
 
-                    li {
-                        padding-left: 10px;
+                    ul {
+                        height: 165px;
 
-                        &::after {
-                            display: block;
-                            width: 4px;
-                            height: 4px;
-                            border-radius: 50%;
-                            content: '';
-                            background-color:@more;
-                            position: absolute;
-                            top: 14px;
-                            left: 3px;
-                        }
-
-                        &:hover {
-                            a {
-                                color: @nav;
-                            }
+                        li {
+                            padding-left: 10px;
 
                             &::after {
-                                background-color: @nav;
+                                display: block;
+                                width: 4px;
+                                height: 4px;
+                                border-radius: 50%;
+                                content: '';
+                                background-color: @more;
+                                position: absolute;
+                                top: 14px;
+                                left: 3px;
                             }
-                        }
 
-                        a {
-                            color: @more;
-                            line-height: 33px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                            word-break: break-all;
+                            &:hover {
+                                a {
+                                    color: @nav;
+                                }
 
+                                &::after {
+                                    background-color: @nav;
+                                }
+                            }
+
+                            a {
+                                color: @more;
+                                line-height: 33px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                word-break: break-all;
+                                display: block;
+                            }
                         }
                     }
                 }
@@ -382,7 +409,9 @@ a {
                         font-size: 14px;
                         line-height: 25px;
                         padding-right: 60px;
-                        i{
+                        height: 25px;
+
+                        i {
                             position: absolute;
                             right: 0;
                             line-height: 25px;
@@ -444,7 +473,7 @@ a {
 .memberUnit {
     margin-top: 35px;
     background-color: @white;
-    border:1px solid @footer
+    border: 1px solid @footer
 }
 
 .member_list {
@@ -455,4 +484,182 @@ a {
         padding: 8px;
         text-align: center;
     }
+}
+
+/*--------------------------资讯动态-----------------------*/
+
+#news {
+    margin-top: 50px;
+
+    .new_tab {
+        h1 {
+            width: 198px;
+            border: 1px solid @footer;
+            background-color: @title;
+            font-size: 22px;
+            color: @green;
+            line-height: 50px;
+            text-align: center;
+            border-bottom: 2px solid @nav;
+            display: inline-block;
+        }
+
+        .el-tabs__header {
+            width: 198px;
+            border: 1px solid @footer;
+            border-top: none;
+            background-color: @white;
+            min-height: 150px;
+            margin-right: 90px;
+
+            .el-tabs__nav {
+                padding: 0 15px;
+            }
+
+            .el-tabs__active-bar {
+                display: none
+            }
+        }
+    }
+}
+
+.el-tabs--left .el-tabs__item.is-left {
+    text-align: center !important;
+    line-height: 58px;
+    height: 58px;
+    font-size: 16px;
+    color: @font;
+    border-bottom: 1px solid @footer;
+    display: flex;
+    align-items: center;
+
+    &::after {
+        display: block;
+        content: '';
+        width: 5px;
+        height: 5px;
+        background-color: @font;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        margin-top: -3px;
+        left: 38px;
+
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.el-tabs--left .el-tabs__item.is-active {
+    color: @nav;
+    &::after{
+        background-color: @nav;
+    }
+}
+
+.el-tabs--left .el-tabs__nav-wrap.is-left::after,
+.el-tabs--left .el-tabs__nav-wrap.is-right::after,
+.el-tabs--right .el-tabs__nav-wrap.is-left::after,
+.el-tabs--right .el-tabs__nav-wrap.is-right::after {
+    display: none;
+}
+
+.el-tabs__content {
+    width: 828px;
+    background-color: @white;
+    border: 1px solid @footer;
+    float: right;
+    top: -50px;
+    position: relative;
+}
+
+.el-tabs--left,
+.el-tabs--right {
+    overflow: visible !important;
+}
+
+.el-tabs::after {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    content: '';
+    height: 0;
+}
+
+.tabscontent {
+    h2 {
+        border-bottom: 2px solid @nav;
+        color: @green;
+        background-color: @title;
+        font-size: 22px;
+        padding: 0 20px;
+        line-height: 50px;
+    }
+
+    .newcontentlist {
+        padding: 0 30px;
+
+        li {
+            border-bottom: 1px solid @footer;
+            margin-bottom: 30px;
+            
+            a{
+                padding-left: 230px;
+                height: 190px;
+                .new_img{
+                    width: 200px;
+                    height: 130px;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 30px;
+                    left: 0;
+                    img{
+                        transition: all .5s ease-in-out;
+                        width: 100%;
+                    }
+
+                }
+                h3{
+                    font-size: 16px;
+                    color: @font;
+                    line-height: 50px;
+                    padding-right: 80px;
+                    span{
+                        right: 0;
+                        line-height: 50px;
+                        top: 0;
+                        font-size:16px
+                    }
+                }
+                p{
+                    padding-right: 80px;
+                    line-height: 30px;
+                    font-size: 13px;
+                    color: @more;
+                    -webkit-line-clamp: 2;
+                    i{
+                        top: 13px;
+                        right: 0;
+                        line-height: 25px;
+                    }
+                }
+            }
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+                border-color: @nav;
+                h3{
+                    color: @nav;
+                }
+            }
+        }
+    }
+}
+
+/*-----------------项目介绍------------------*/
+#project{
+    margin-top:50px
 }

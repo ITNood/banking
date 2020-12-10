@@ -26,7 +26,8 @@ export default {
     return {};
   },
   mounted() {
-    var swiper = new Swiper(".swiper-container", {// eslint-disable-line no-unused-vars
+    //注释要跟在后面，否侧报错
+    var swiper = new Swiper(".swiper-container", {// eslint-disable-line no-unused-vars 
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -85,7 +86,6 @@ export default {
   p {
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
-    width: 100%;
     padding: 10px 15px;
     bottom: 0;
     left: 0;

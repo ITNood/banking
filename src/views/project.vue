@@ -1,7 +1,11 @@
 <template>
 <div>
-    <Navbar/>
-    <div class="container"></div>
+    <Navbar :search="value"/>
+    <div class="container">
+        <div id="project">
+            
+        </div>
+    </div>
     <Footer/>
 </div>
 </template>
@@ -13,7 +17,7 @@ export default {
 components: {Footer,Navbar},
 data() {
 return {
-
+    value:''
 };
 },
 created() {

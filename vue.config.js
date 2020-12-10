@@ -4,7 +4,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://www.greenfinancial.org/',
+                target: 'http://www.greenfinancial.org/index.php/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

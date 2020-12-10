@@ -1,6 +1,6 @@
 <template>
   <div style="background: #fafafa !important">
-    <Navbar />
+    <Navbar :search="value"/>
     <div class="container clear content">
       <!--左侧-->
       <div class="home_left left">
@@ -26,7 +26,7 @@
                 <ul>
                   <li v-for="(list, index) in item.list" :key="index" class="relative">
                     <router-link :to="{ path: '/', query: { id: list.id } }">{{
-                      list.text
+                      list.title
                     }}</router-link>
                   </li>
                 </ul>
@@ -49,10 +49,10 @@
             <li v-for="(todo, index) in todos" :key="index">
               <router-link :to="{ path: '/', query: { id: todo.id } }">
                 <h1 class="font-hide relative">
-                  {{ todo.title }}<span>{{ todo.date }}</span>
+                  {{ todo.title }}<span>{{ todo.create_time }}</span>
                 </h1>
                 <p class="font-hide relative">
-                  {{ todo.text }}<i class="el-icon-right"></i>
+                  {{ todo.post_excerpt }}<i class="el-icon-right"></i>
                 </p>
               </router-link>
             </li>
@@ -106,11 +106,12 @@
 import api from "../API/index";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import Swiper1 from "../components/swiper"; // eslint-disable-line no-unused-vars
+import Swiper1 from "../components/swiper";
 export default {
   components: { Navbar, Swiper1, Footer },
   data() {
     return {
+      value:'',
       id: "",
       newsid: "",
       unitid: "",
@@ -137,64 +138,39 @@ export default {
         },
       ],
       items: [
-        {
-          img: require("../../static/images/new_list1.jpg"),
-          list: [
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-          ],
-        },
-        {
-          img: require("../../static/images/new_list1.jpg"),
-          list: [
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-          ],
-        },
-        {
-          img: require("../../static/images/new_list1.jpg"),
-          list: [
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-            { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-          ],
-        },
+        // {
+        //   img: require("../../static/images/new_list1.jpg"),
+        //   list: [
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" ,id:'1'},
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" ,id:'1'},
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
+        //   ],
+        // },
+        // {
+        //   img: require("../../static/images/new_list1.jpg"),
+        //   list: [
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //   ],
+        // },
+        // {
+        //   img: require("../../static/images/new_list1.jpg"),
+        //   list: [
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
+        //   ],
+        // },
       ],
 
-      todos: [
-        {
-          title: "推动生态优势转化为经济优势",
-          date: "12-07",
-          text: "绿色产业将成为‘十四五’时期福建经济..",
-          id: 1,
-        },
-        {
-          title: "推动生态优势转化为经济优势",
-          date: "12-07",
-          text: "绿色产业将成为‘十四五’时期福建经济..",
-          id: 1,
-        },
-        {
-          title: "推动生态优势转化为经济优势",
-          date: "12-07",
-          text: "绿色产业将成为‘十四五’时期福建经济..",
-          id: 1,
-        },
-        {
-          title: "推动生态优势转化为经济优势",
-          date: "12-07",
-          text: "绿色产业将成为‘十四五’时期福建经济..",
-          id: 1,
-        },
-      ],
+      todos: [],
       units: [
         { text: "中国人寿保险(集团)公司" },
         { text: "中国人寿保险(集团)公司" },
@@ -226,10 +202,13 @@ export default {
       api
         .choices("index")
         .then((res) => {
-          console.log(res);
+          //if(res.status==200){
+            console.log(res)
+            this.todos=res.barnd
+            this.items=res.items
+         // }
         })
         .catch((err) => {
-          // this.$message.warning(err.msg)
           console.log(err);
         });
     },
