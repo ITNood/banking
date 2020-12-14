@@ -124,6 +124,7 @@ a {
     overflow: hidden;
     // -webkit-line-clamp: 2;
 }
+
 #footer {
     background-color: @footer;
     margin-top: 50px;
@@ -169,13 +170,18 @@ a {
         display: block;
         height: 100px;
         top: 10px;
-        right: 280px;
+        right: 350px;
     }
 
     .logo {
         height: 80px;
+        width: 127px;
         right: 0;
+        display: block;
         top: 20px;
+        img{
+            width: 100%;
+        }
     }
 }
 
@@ -190,23 +196,21 @@ a {
             display: flex;
             padding: 10px 0;
 
-            li {
+
+            a {
                 flex: 1;
+                height: 40px;
+                color: @green;
+                font-size: 18px;
+                justify-content: left;
 
-                a {
-                    height: 40px;
-                    color: @green;
-                    font-size: 18px;
-                    justify-content: left;
-
-                    &:hover {
-                        color: @white;
-                    }
+                &:hover {
+                    color: @white;
                 }
+            }
 
-                .router-link-exact-active {
-                    color: @white  !important;
-                }
+            .router-link-exact-active {
+                color: @white  !important;
             }
         }
 
@@ -530,8 +534,9 @@ a {
     font-size: 16px;
     color: @font;
     border-bottom: 1px solid @footer;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    justify-content: center;
 
     &::after {
         display: block;
@@ -554,7 +559,9 @@ a {
 
 .el-tabs--left .el-tabs__item.is-active {
     color: @nav;
-    &::after{
+    font-weight: normal;
+
+    &::after {
         background-color: @nav;
     }
 }
@@ -600,58 +607,71 @@ a {
 
     .newcontentlist {
         padding: 0 30px;
+        margin-top: 40px;
 
         li {
             border-bottom: 1px solid @footer;
             margin-bottom: 30px;
-            
-            a{
+
+            a {
                 padding-left: 230px;
-                height: 190px;
-                .new_img{
+                height: 130px;
+                padding-bottom: 30px;
+                display:block;
+
+                .new_img {
                     width: 200px;
                     height: 130px;
                     overflow: hidden;
                     position: absolute;
-                    top: 30px;
+                    top: 0;
                     left: 0;
-                    img{
+
+                    img {
                         transition: all .5s ease-in-out;
                         width: 100%;
                     }
 
                 }
-                h3{
+
+                h3 {
                     font-size: 16px;
                     color: @font;
                     line-height: 50px;
                     padding-right: 80px;
-                    span{
+
+                    span {
                         right: 0;
                         line-height: 50px;
                         top: 0;
-                        font-size:16px
+                        font-size: 16px
                     }
                 }
-                p{
+
+                p {
                     padding-right: 80px;
                     line-height: 30px;
                     font-size: 13px;
                     color: @more;
                     -webkit-line-clamp: 2;
-                    i{
-                        top: 13px;
+
+                    i {
+                        top: 50%;
+                        margin-top: -13px;
                         right: 0;
                         line-height: 25px;
                     }
                 }
             }
+
             &:hover {
                 img {
                     transform: scale(1.1);
                 }
+
                 border-color: @nav;
-                h3{
+
+                h3 {
                     color: @nav;
                 }
             }
@@ -660,6 +680,71 @@ a {
 }
 
 /*-----------------项目介绍------------------*/
-#project{
-    margin-top:50px
+#project {
+    margin-top: 50px;
+    background-color: @white;
+    border: 1px solid @footer;
+
+    .projectContent {
+        padding: 30px;
+
+        li {
+            width: 33.333%;
+            float: left;
+            display: block;
+
+            a {
+                transition: all .5s ease-in-out;
+
+                &:hover {
+                    background-color: @footer;
+
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+
+                border-bottom: 1px solid @footer;
+                padding: 15px 20px 30px 20px;
+                display: block;
+                margin-bottom: 15px;
+
+                .pro_img {
+                    overflow: hidden;
+                    height: 200px;
+
+                    img {
+                        width: 100%;
+                        transition: all .5s ease-in-out;
+                    }
+                }
+
+                h1 {
+                    font-size: 16px;
+                    color: @font;
+                    margin-top: 20px;
+
+                }
+
+                p {
+                    color: @more;
+                    font-size: 13px;
+                    margin-top: 15px;
+                    line-height: 25px;
+                    text-align: left;
+                    -webkit-line-clamp: 2;
+                }
+
+                span {
+                    display: block;
+                    color: @more;
+                    margin-top: 15px;
+
+                    i {
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
+    }
 }

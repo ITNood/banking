@@ -3,8 +3,10 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
-          <img :src="item.img" />
-          <p>{{ item.text }}</p>
+          <router-link :to="{ path: '/', query: { id: item.id } }">
+            <img :src="item.img" />
+            <p>{{ item.title }}</p>
+          </router-link>
         </div>
       </div>
       <!-- Add Pagination -->
@@ -27,7 +29,8 @@ export default {
   },
   mounted() {
     //注释要跟在后面，否侧报错
-    var swiper = new Swiper(".swiper-container", {// eslint-disable-line no-unused-vars 
+     setTimeout(()=>{
+      var swiper = new Swiper(".swiper-container", {// eslint-disable-line no-unused-vars
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -36,21 +39,31 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      autoplay:{
-        delay:5000,
-        stopOnLastSlide:true,
-        disableOnInteraction:false,
+      autoplay: {
+        delay: 5000,
+        stopOnLastSlide: true,
+        disableOnInteraction: false,
       },
+      observer:true,
+      observeParents:true,
       loop: true,
     });
+    },500)
+    
   },
   created() {},
-  methods: {},
+  methods: {
+    app(){
+      setTimeout(()=>{
+
+      })
+    }
+  },
 };
 </script>
 <style lang="less">
-:root{
-  --swiper-theme-color:white;
+:root {
+  --swiper-theme-color: white;
 }
 .swiper-container {
   width: 100%;
@@ -95,15 +108,18 @@ export default {
     text-align: left;
   }
 }
-.swiper-pagination{
+.swiper-pagination {
   text-align: right;
   right: 20px !important;
 }
-.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
   left: -20px;
   bottom: 15px;
 }
-.swiper-button-next:after, .swiper-button-prev:after{
+.swiper-button-next:after,
+.swiper-button-prev:after {
   font-size: 30px;
 }
 </style>

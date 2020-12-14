@@ -7,7 +7,7 @@ Vue.use(Router)
 
 // 创建axios实例
 const Axios = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? "http://de.home.doopup.com/" : "/api/",
+    baseURL: process.env.NODE_ENV === 'production' ? "http://www.greenfinancial.org/index.php/" : "/api/",
     //baseURL:'http://www.hxfc.com/',
     timeout: 10000, //超时请求
     maxRedirects: 1,

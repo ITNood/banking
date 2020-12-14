@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Navbar :search="value"/>
+      <Navbar/>
       <div class="container"></div>
       <Footer/>
   </div>

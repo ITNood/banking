@@ -1,6 +1,6 @@
 <template>
   <div style="background: #fafafa !important">
-    <Navbar :search="value"/>
+    <Navbar />
     <div class="container clear content">
       <!--左侧-->
       <div class="home_left left">
@@ -13,7 +13,7 @@
         <div class="project">
           <div class="title relative">
             <h1>项目介绍</h1>
-            <router-link :to="{ path: '/', query: { id: this.id } }">更多+</router-link>
+            <router-link to="/project">更多+</router-link>
           </div>
           <div class="content">
             <div
@@ -21,7 +21,7 @@
               v-for="(item, index) in items"
               :key="index"
             >
-              <router-link to="" class="content_img"><img :src="item.img" /></router-link>
+              <router-link to="" class="content_img flex-center"><img :src="item.img" /></router-link>
               <div class="content_left">
                 <ul>
                   <li v-for="(list, index) in item.list" :key="index" class="relative">
@@ -41,7 +41,7 @@
         <div class="news">
           <div class="title relative">
             <h1>资讯动态</h1>
-            <router-link :to="{ path: '/', query: { id: this.newsid } }"
+            <router-link to="/news"
               >更多+</router-link
             >
           </div>
@@ -73,7 +73,7 @@
                 <router-link
                   :to="{ path: '/', query: { id: unit.id } }"
                   class="font-hide"
-                  >{{ unit.text }}</router-link
+                  >{{ unit.post_title }}</router-link
                 >
               </li>
             </ul>
@@ -111,78 +111,14 @@ export default {
   components: { Navbar, Swiper1, Footer },
   data() {
     return {
-      value:'',
       id: "",
       newsid: "",
       unitid: "",
-      list: [
-        {
-          img: require("../../static/images/banner.jpg"),
-          text: "用绿色金融创新打通地方经济血脉",
-        },
-        {
-          img: require("../../static/images/banner.jpg"),
-          text: "用绿色金融创新打通地方经济血脉",
-        },
-        {
-          img: require("../../static/images/banner.jpg"),
-          text: "用绿色金融创新打通地方经济血脉",
-        },
-        {
-          img: require("../../static/images/banner.jpg"),
-          text: "用绿色金融创新打通地方经济血脉",
-        },
-        {
-          img: require("../../static/images/banner.jpg"),
-          text: "用绿色金融创新打通地方经济血脉",
-        },
-      ],
-      items: [
-        // {
-        //   img: require("../../static/images/new_list1.jpg"),
-        //   list: [
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" ,id:'1'},
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" ,id:'1'},
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办",id:'1' },
-        //   ],
-        // },
-        // {
-        //   img: require("../../static/images/new_list1.jpg"),
-        //   list: [
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //   ],
-        // },
-        // {
-        //   img: require("../../static/images/new_list1.jpg"),
-        //   list: [
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //     { text: "2020年绿色金融政策解读与项目对接会成功举办" },
-        //   ],
-        // },
-      ],
+      list: [],
+      items: [],
 
       todos: [],
-      units: [
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-        { text: "中国人寿保险(集团)公司" },
-      ],
+      units: [],
       members: [
         { img: require("../../static/images/menber1.jpg") },
         { img: require("../../static/images/menber2.jpg") },
@@ -206,6 +142,8 @@ export default {
             console.log(res)
             this.todos=res.barnd
             this.items=res.items
+            this.list=res.Rotatio
+            this.units=res.Council
          // }
         })
         .catch((err) => {

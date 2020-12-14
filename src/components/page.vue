@@ -14,18 +14,19 @@
 <script>
 export default {
   name: "Pagination",
-  props: ["value",],
+  props: ["value"],
   components: {},
   data() {
     return {
-        current:1,
+      current: 1,
     };
   },
   created() {},
   methods: {
     handleCurrentChange(val) {
       this.current = val;
-      console.log(this.current);
+      this.$emit('clickpage',val)
+      //console.log(this.current);
     },
   },
 };
@@ -40,9 +41,11 @@ export default {
   background: #164545;
   color: white;
 }
-.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li{
-    background: white;
-    color: #5f5f5f;
-    border:1px solid #eee;
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  background: white;
+  color: #5f5f5f;
+  border: 1px solid #eee;
 }
 </style>
